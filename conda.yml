@@ -1,4 +1,4 @@
-name: elastic net ratio tuning
+name: Ridge Parameter Tuning
 channels:
   - conda-forge
 dependencies:

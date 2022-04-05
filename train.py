@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
-from sklearn.linear_model import ElasticNet, ElasticNetCV
+from sklearn.linear_model import Ridge
 import mlflow
 
 
@@ -50,32 +50,27 @@ standardized_ds: pd.DataFrame = standardized_features.copy()
 standardized_ds["Balance"] = standardized_response.copy()
 
 
-params: np.array = np.array([10**i for i in range(-2, 7)])
-alphas: np.array = np.array([i / 5 for i in range(6)])
+tuning_params: np.array = np.array([10**i for i in range(-2, 7)])
 
 print(standardized_ds)
 
 with mlflow.start_run():
-    for alpha in alphas:
-        weights: list = []
-        for param in params:
-            enr: ElasticNet = ElasticNet(
-                alpha=alpha,
-                l1_ratio=param,
-                max_iter=1000000,
-                normalize=False,
-                fit_intercept=False,
-            )
-            enr.fit(standardized_features, standardized_response)
-            weights.append(enr.coef_)
-        weights = np.asmatrix(weights)
-        i = 0
-        l2_yaxis: list = [
-            (np.array(weights[:, i].flatten()).flatten())
-            for i in range(len(np.array(weights[i]).flatten()))
-        ]
-        for l in l2_yaxis:
-            for i, ll in enumerate(l):
-                # print(ll)
-                name: str = standardized_ds.columns[i]
-                mlflow.log_metric(name, ll)
+    weights: list = []
+    for alpha in tuning_params:
+        model: Ridge = Ridge(
+            alpha=alpha,
+            max_iter=1000000,
+            fit_intercept=False,
+        )
+        model.fit(standardized_features, standardized_response)
+        # print(model.coef_)
+        weights.append(model.coef_)
+        weight_metrics: dict = {f"feature_{k}": v for k, v in enumerate(model.coef_)}
+        mlflow.log_metrics(weight_metrics)
+    weights = np.asmatrix(weights)
+    # i = 0
+    # l2_yaxis: list = [
+    #     np.array(weights[:, i].flatten()).flatten()
+    #     for i in range(len(np.array(weights[i]).flatten()))
+    # ]
+    # regression_coeff_l2: np.array = np.transpose(l2_yaxis)
