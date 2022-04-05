@@ -2,9 +2,9 @@ name: ridgeTrainingModel
 channels:
   - defaults
 dependencies:
-  - scikit-learn=0.19.1
-  - pandas>=1.0.0
-  - numpy>=1.14.3
+  - numpy
+  - pandas
+  - scikit-learn
   - pip
   - pip:
-    - mlflow==1.24.0
+    - mlflow
