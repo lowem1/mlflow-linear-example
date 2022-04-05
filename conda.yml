@@ -1,7 +1,6 @@
 name: Ridge Parameter Tuning
 channels:
-  - conda-forge
-  - anaconda
+  - defaults
 dependencies:
   - python=3.8
   - pip
