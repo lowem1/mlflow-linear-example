@@ -3,7 +3,10 @@ channels:
   - defaults
   - conda-forge
 dependencies:
-  - scikit-learn
-  - mlflow>=1.0
-  - pandas
+  - scikit-learn=0.19.1
+  - pandas>=1.0.0
+  - numpy>=1.14.3
+  - pip
+  - pip:
+    - mlflow
 
