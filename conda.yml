@@ -1,7 +1,6 @@
-name: Ridge Parameter Tuning
+name: ridgeTrainingModel
 channels:
   - defaults
-  - conda-forge
 dependencies:
   - scikit-learn=0.19.1
   - pandas>=1.0.0
@@ -9,4 +8,3 @@ dependencies:
   - pip
   - pip:
     - mlflow==1.24.0
-
