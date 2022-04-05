@@ -5,6 +5,7 @@ dependencies:
   - python=3.8
   - pip
   - pip:
-      - scikit-learn
+      - sklearn
       - mlflow>=1.0
       - pandas
+
