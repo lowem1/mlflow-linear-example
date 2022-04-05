@@ -8,5 +8,5 @@ dependencies:
   - numpy>=1.14.3
   - pip
   - pip:
-    - mlflow
+    - mlflow=1.24.0
 
