@@ -1,0 +1,10 @@
+name: elastic net ratio tuning
+channels:
+  - conda-forge
+dependencies:
+  - python=3.8
+  - pip
+  - pip:
+      - scikit-learn
+      - mlflow>=1.0
+      - pandas
