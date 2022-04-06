@@ -5,6 +5,9 @@ dependencies:
   - numpy
   - pandas
   - scikit-learn
+  - scipy
+  - python==3.9
+  - matplotlib
   - pip
   - pip:
     - mlflow
