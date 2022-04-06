@@ -67,9 +67,4 @@ with mlflow.start_run():
         weight_metrics: dict = {f"feature_{k}": v for k, v in enumerate(model.coef_)}
         mlflow.log_metrics(weight_metrics)
     weights = np.asmatrix(weights)
-    # i = 0
-    # l2_yaxis: list = [
-    #     np.array(weights[:, i].flatten()).flatten()
-    #     for i in range(len(np.array(weights[i]).flatten()))
-    # ]
-    # regression_coeff_l2: np.array = np.transpose(l2_yaxis)
+    mlflow.sklearn.log_model(model, "michael_test_model")
